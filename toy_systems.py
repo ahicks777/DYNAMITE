@@ -38,16 +38,16 @@ def draw_from_sphere(n):
 
 
 class PlummerSphere(object):
-    def __init__(self):
+    def __init__(self,G,M,b):
         self._v_sampler = get_1d_sampler(
             lambda v: v**2 * (1 - v**2 / 2)**(7/2),
             0., np.sqrt(2.)-1.e-8,
             n=1000
         )
 
-        self.G = np.load('G.npy')
-        self.M = np.load('M.npy')
-        self.b = np.load('b.npy')
+        self.G = G
+        self.M = M
+        self.b = b
         self.df_norm = (24 * (self.b**2) * np.sqrt(2.) ) / (7. * (self.G**5) * (self.M**4) * (np.pi**3))
 
     def psi(self, r):
